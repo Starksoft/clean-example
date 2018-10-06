@@ -1,10 +1,12 @@
 package com.example.clean.feature.message.presentation.presenters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.arch.clean.core.presentation.AndroidInjector;
+import com.arch.clean.core.domain.executor.Executor;
 import com.arch.clean.core.presentation.presenters.AbstractPresenter;
+import com.arch.clean.core.threading.MainThread;
 import com.example.clean.Utils;
 import com.example.clean.feature.message.data.repositories.MessageRepository;
 import com.example.clean.feature.message.data.repositories.MessageRepositoryImpl;
@@ -16,8 +18,8 @@ public class MainPresenterImpl extends AbstractPresenter<MainPresenterView> impl
 	private static final String TAG = "MainPresenterImpl";
 	@NonNull private final MessageInteractor messageInteractor;
 
-	public MainPresenterImpl(@NonNull AndroidInjector androidInjector) {
-		super(androidInjector);
+	public MainPresenterImpl(@NonNull Context context, @NonNull Executor executor, @NonNull MainThread mainThread) {
+		super(context, executor, mainThread);
 		MessageRepository messageRepository = new MessageRepositoryImpl(context);
 		messageInteractor = new MessageInteractorImpl(executor, mainThread, this, messageRepository);
 	}

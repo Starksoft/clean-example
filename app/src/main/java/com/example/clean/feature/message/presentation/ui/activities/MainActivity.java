@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.arch.clean.core.domain.executor.ThreadExecutor;
-import com.arch.clean.core.presentation.AndroidInjector;
 import com.arch.clean.core.threading.MainThreadImpl;
 import com.example.clean.R;
+import com.example.clean.feature.message.presentation.presenters.MainPresenter;
 import com.example.clean.feature.message.presentation.presenters.MainPresenterImpl;
 import com.example.clean.feature.message.presentation.presenters.MainPresenterView;
 
@@ -29,7 +29,7 @@ public final class MainActivity extends AppCompatActivity implements MainPresent
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.load) Button load;
 	@BindView(R.id.save) Button save;
-	private MainPresenterImpl presenter;
+	private MainPresenter presenter;
 	private Unbinder unbinder;
 
 	@Override
@@ -37,9 +37,7 @@ public final class MainActivity extends AppCompatActivity implements MainPresent
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		presenter = new MainPresenterImpl(new AndroidInjector(getApplicationContext(),
-		                                                      ThreadExecutor.getInstance(),
-		                                                      MainThreadImpl.getInstance()));
+		presenter = new MainPresenterImpl(getApplicationContext(), ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
 		presenter.attachView(this);
 
 		unbinder = ButterKnife.bind(this);
@@ -97,7 +95,11 @@ public final class MainActivity extends AppCompatActivity implements MainPresent
 
 	@Override
 	public void manageProgress(boolean show) {
-
+		if (show) {
+			showProgress();
+		} else {
+			hideProgress();
+		}
 	}
 
 	@Override

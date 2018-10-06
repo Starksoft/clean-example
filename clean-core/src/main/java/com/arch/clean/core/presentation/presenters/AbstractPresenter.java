@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.arch.clean.core.domain.executor.Executor;
-import com.arch.clean.core.presentation.AndroidInjector;
 import com.arch.clean.core.presentation.ui.BaseView;
 import com.arch.clean.core.threading.MainThread;
 
@@ -16,21 +15,23 @@ public abstract class AbstractPresenter <V extends BaseView> implements BasePres
 	@NonNull protected final Context context;
 	private V view;
 
-	public AbstractPresenter(@NonNull AndroidInjector androidInjector) {
-		executor = androidInjector.getExecutor();
-		mainThread = androidInjector.getMainThread();
-		context = androidInjector.getContext();
+	protected AbstractPresenter(@NonNull Context context, @NonNull Executor executor, @NonNull MainThread mainThread) {
+		this.context = context;
+		this.executor = executor;
+		this.mainThread = mainThread;
 	}
 
 	protected V getView() {
 		return view;
 	}
 
+	@Override
 	public final void attachView(@NonNull V view) {
 		this.view = view;
 		onAttachView(view);
 	}
 
+	@Override
 	public final void detachView(@NonNull V view) {
 		onDetachView(view);
 	}
