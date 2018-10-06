@@ -2,9 +2,9 @@ package com.example.clean.feature.message.domain.interactors;
 
 import android.support.annotation.NonNull;
 
-import com.example.clean.core.domain.executor.Executor;
-import com.example.clean.core.domain.interactors.AbstractInteractor;
-import com.example.clean.core.threading.MainThread;
+import com.arch.clean.core.domain.executor.Executor;
+import com.arch.clean.core.domain.interactors.AbstractInteractor;
+import com.arch.clean.core.threading.MainThread;
 import com.example.clean.feature.message.data.repositories.MessageRepository;
 
 public final class MessageInteractorImpl extends AbstractInteractor implements MessageInteractor {

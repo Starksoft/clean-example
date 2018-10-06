@@ -1,18 +1,14 @@
-package com.example.clean.core.domain.executor;
+package com.arch.clean.core.domain.executor;
 
 import android.support.annotation.NonNull;
 
-import com.example.clean.core.domain.interactors.AbstractInteractor;
-import com.example.clean.core.domain.interactors.InteractorCommand;
+import com.arch.clean.core.domain.interactors.AbstractInteractor;
+import com.arch.clean.core.domain.interactors.InteractorCommand;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/**
- * This singleton class will make sure that each interactor operation gets a background thread.
- * <p/>
- */
 public class ThreadExecutor implements Executor {
 
 	private static final int CORE_POOL_SIZE = 3;
@@ -26,10 +22,7 @@ public class ThreadExecutor implements Executor {
 		threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TIME_UNIT, new LinkedBlockingQueue<>());
 	}
 
-	/**
-	 * Returns a singleton instance of this executor. If the executor is not initialized then it initializes it and returns
-	 * the instance.
-	 */
+	@NonNull
 	public static Executor getInstance() {
 		if (threadExecutor == null) {
 			threadExecutor = new ThreadExecutor();

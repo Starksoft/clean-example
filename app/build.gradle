@@ -8,7 +8,7 @@ android {
 	buildToolsVersion versions.buildTools
 
 	defaultConfig {
-		applicationId "com.kodelabs.boilerplate"
+		applicationId "com.example.clean"
 		minSdkVersion buildConfig.minSdk
 		targetSdkVersion buildConfig.targetSdk
 		versionCode 1
@@ -29,6 +29,7 @@ android {
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation project(path: ':clean-core')
 
 	implementation "com.jakewharton:butterknife:$versions.butterknife"
 	kapt "com.jakewharton:butterknife-compiler:$versions.butterknife"
@@ -40,10 +41,4 @@ dependencies {
 
 	testImplementation "junit:junit:$versions.junit"
 	testImplementation "org.mockito:mockito-core:$versions.mockito"
-
-	// Moxy
-	implementation "com.arello-mobile:moxy:$versions.moxy"
-//	implementation "com.arello-mobile:moxy-android:$versions.moxy"
-	kapt "com.arello-mobile:moxy-compiler:$versions.moxy"
-	// End of Moxy
 }

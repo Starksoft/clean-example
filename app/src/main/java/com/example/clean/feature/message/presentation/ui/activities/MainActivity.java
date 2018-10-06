@@ -3,20 +3,17 @@ package com.example.clean.feature.message.presentation.ui.activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.PresenterType;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.arellomobile.mvp.presenter.ProvidePresenterTag;
+import com.arch.clean.core.domain.executor.ThreadExecutor;
+import com.arch.clean.core.presentation.AndroidInjector;
+import com.arch.clean.core.threading.MainThreadImpl;
 import com.example.clean.R;
-import com.example.clean.core.domain.executor.ThreadExecutor;
-import com.example.clean.core.etc.moxy.MvpActivity;
-import com.example.clean.core.threading.MainThreadImpl;
 import com.example.clean.feature.message.presentation.presenters.MainPresenterImpl;
 import com.example.clean.feature.message.presentation.presenters.MainPresenterView;
 
@@ -25,16 +22,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public final class MainActivity extends MvpActivity implements MainPresenterView {
-
-	@InjectPresenter(type = PresenterType.GLOBAL) MainPresenterImpl presenter;
+public final class MainActivity extends AppCompatActivity implements MainPresenterView {
 
 	@BindView(R.id.root) ViewGroup root;
 	@BindView(R.id.input) EditText input;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.load) Button load;
 	@BindView(R.id.save) Button save;
-
+	private MainPresenterImpl presenter;
 	private Unbinder unbinder;
 
 	@Override
@@ -42,23 +37,26 @@ public final class MainActivity extends MvpActivity implements MainPresenterView
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		presenter = new MainPresenterImpl(new AndroidInjector(getApplicationContext(),
+		                                                      ThreadExecutor.getInstance(),
+		                                                      MainThreadImpl.getInstance()));
+		presenter.attachView(this);
+
 		unbinder = ButterKnife.bind(this);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		presenter.detachView(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+
+
 		unbinder.unbind();
-	}
-
-	@ProvidePresenterTag(presenterClass = MainPresenterImpl.class, type = PresenterType.GLOBAL)
-	String provideRepositoryPresenterTag() {
-		return MainPresenterImpl.class.getSimpleName();
-	}
-
-	@ProvidePresenter(type = PresenterType.GLOBAL)
-	MainPresenterImpl provideRepositoryPresenter() {
-		return new MainPresenterImpl(getApplicationContext(), ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
 	}
 
 	@OnClick({R.id.load, R.id.save})
@@ -95,6 +93,11 @@ public final class MainActivity extends MvpActivity implements MainPresenterView
 	@Override
 	public void showError(@Nullable String message) {
 		Snackbar.make(root, "Error: " + message, Snackbar.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void manageProgress(boolean show) {
+
 	}
 
 	@Override

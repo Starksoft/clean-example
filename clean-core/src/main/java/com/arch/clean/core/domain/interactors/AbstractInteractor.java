@@ -1,10 +1,10 @@
-package com.example.clean.core.domain.interactors;
+package com.arch.clean.core.domain.interactors;
 
 import android.support.annotation.AnyThread;
 import android.support.annotation.NonNull;
 
-import com.example.clean.core.domain.executor.Executor;
-import com.example.clean.core.threading.MainThread;
+import com.arch.clean.core.domain.executor.Executor;
+import com.arch.clean.core.threading.MainThread;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractInteractor {
