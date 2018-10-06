@@ -4,6 +4,12 @@ apply plugin: 'com.jfrog.bintray'
 
 android {
 	compileSdkVersion buildConfig.compileSdk
+	buildToolsVersion versions.buildTools
+
+	defaultConfig {
+		minSdkVersion buildConfig.minSdk
+		targetSdkVersion buildConfig.targetSdk
+	}
 
 	buildTypes {
 		release {
@@ -21,7 +27,7 @@ android {
 ext.artifact = [
 		'groupId': 'com.arch.clean',
 		'id'     : 'clean-core',
-		'version': '1.0.1',
+		'version': '1.0.2',
 		'siteUrl': 'https://github.com/Starksoft/clean-example',
 		'gitUrl' : 'https://github.com/Starksoft/clean-example.git',
 		'repo'   : 'CleanCore'
@@ -33,7 +39,7 @@ group = artifact.groupId
 install {
 	repositories.mavenInstaller {
 		pom.project {
-			packaging 'jar'
+			packaging 'aar'
 			groupId artifact.groupId
 			artifactId artifact.id
 			version artifact.version

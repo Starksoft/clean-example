@@ -1,9 +1,9 @@
 package com.example.clean.feature.message.presentation.ui.activities;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.arch.clean.core.domain.executor.ThreadExecutor;
+import com.arch.clean.core.presentation.presenters.BasePresenter;
+import com.arch.clean.core.presentation.ui.AbstractActivity;
 import com.arch.clean.core.threading.MainThreadImpl;
 import com.example.clean.R;
 import com.example.clean.feature.message.presentation.presenters.MainPresenter;
@@ -22,38 +24,28 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public final class MainActivity extends AppCompatActivity implements MainPresenterView {
+public final class MainActivity extends AbstractActivity implements MainPresenterView {
+
+	private final MainPresenter presenter = getPresenter();
 
 	@BindView(R.id.root) ViewGroup root;
 	@BindView(R.id.input) EditText input;
 	@BindView(R.id.progress) ProgressBar progress;
 	@BindView(R.id.load) Button load;
 	@BindView(R.id.save) Button save;
-	private MainPresenter presenter;
+
 	private Unbinder unbinder;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		presenter = new MainPresenterImpl(getApplicationContext(), ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
-		presenter.attachView(this);
-
 		unbinder = ButterKnife.bind(this);
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		presenter.detachView(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
-
 		unbinder.unbind();
 	}
 
@@ -106,5 +98,11 @@ public final class MainActivity extends AppCompatActivity implements MainPresent
 	public void displayMessage(@Nullable String message) {
 		input.setText(message);
 		input.setSelection(message == null ? 0 : message.length());
+	}
+
+	@NonNull
+	@Override
+	public BasePresenter createPresenter() {
+		return new MainPresenterImpl(this, ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
 	}
 }

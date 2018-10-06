@@ -3,6 +3,7 @@ package com.example.clean.feature.message.presentation.presenters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.arch.clean.core.domain.executor.Executor;
 import com.arch.clean.core.presentation.presenters.AbstractPresenter;
@@ -26,12 +27,12 @@ public class MainPresenterImpl extends AbstractPresenter<MainPresenterView> impl
 
 	@Override
 	protected void onAttachView(@NonNull MainPresenterView view) {
-
+		Log.d(TAG, "onAttachView() called with: view = [" + view + "]");
 	}
 
 	@Override
 	protected void onDetachView(@NonNull MainPresenterView view) {
-
+		Log.d(TAG, "onDetachView() called with: view = [" + view + "]");
 	}
 
 	@Override

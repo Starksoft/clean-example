@@ -2,7 +2,9 @@ package com.arch.clean.core.presentation.presenters;
 
 import android.support.annotation.NonNull;
 
-public interface BasePresenter <V> {
+import com.arch.clean.core.presentation.ui.BaseView;
+
+public interface BasePresenter <V extends BaseView> {
 
 	void attachView(@NonNull V view);
 
