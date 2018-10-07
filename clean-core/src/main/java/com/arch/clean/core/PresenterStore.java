@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.arch.clean.core.presentation.presenters.BasePresenter;
 import com.arch.clean.core.presentation.presenters.PresenterCreator;
-import com.arch.clean.core.presentation.ui.BaseView;
+import com.arch.clean.core.presentation.BaseMvpView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,18 +31,18 @@ public final class PresenterStore {
 		getPresenter(presenterCreator);
 	}
 
-	public void onAttach(@NonNull PresenterCreator presenterCreator, @NonNull BaseView baseView) {
+	public void onAttach(@NonNull PresenterCreator presenterCreator, @NonNull BaseMvpView baseMvpView) {
 		//noinspection unchecked
-		getPresenter(presenterCreator).attachView(baseView);
+		getPresenter(presenterCreator).attachView(baseMvpView);
 	}
 
 	public void onSaveInstanceState(@NonNull String presenterTag, Bundle outState) {
 
 	}
 
-	public void onDetach(@NonNull PresenterCreator presenterCreator, @NonNull BaseView baseView) {
+	public void onDetach(@NonNull PresenterCreator presenterCreator, @NonNull BaseMvpView baseMvpView) {
 		//noinspection unchecked
-		getPresenter(presenterCreator).detachView(baseView);
+		getPresenter(presenterCreator).detachView(baseMvpView);
 	}
 
 	public void onDestroyView(@NonNull PresenterCreator presenterCreator) {

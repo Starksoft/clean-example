@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 
 import com.arch.clean.core.domain.executor.ThreadExecutor;
 import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.ui.AbstractActivity;
+import com.arch.clean.core.presentation.AbstractMvpActivity;
 import com.arch.clean.core.threading.MainThreadImpl;
 import com.example.clean.R;
 import com.example.clean.feature.message.presentation.presenters.MainPresenter;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public final class MainActivity extends AbstractActivity implements MainPresenterView {
+public final class MainActivity extends AbstractMvpActivity implements MainPresenterView {
 
 	private final MainPresenter presenter = getPresenter();
 

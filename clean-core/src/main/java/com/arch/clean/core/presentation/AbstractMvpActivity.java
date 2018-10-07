@@ -1,4 +1,4 @@
-package com.arch.clean.core.presentation.ui;
+package com.arch.clean.core.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import com.arch.clean.core.PresenterStore;
 import com.arch.clean.core.presentation.presenters.BasePresenter;
 import com.arch.clean.core.presentation.presenters.PresenterCreator;
 
-public abstract class AbstractActivity extends AppCompatActivity implements PresenterCreator, BaseView {
+public abstract class AbstractMvpActivity extends AppCompatActivity implements PresenterCreator, BaseMvpView {
 
 	private final PresenterStore presenterStore = PresenterStore.getInstance();
 

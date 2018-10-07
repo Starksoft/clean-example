@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.arch.clean.core.domain.executor.Executor;
-import com.arch.clean.core.presentation.ui.BaseView;
+import com.arch.clean.core.presentation.BaseMvpView;
 import com.arch.clean.core.threading.MainThread;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class AbstractPresenter <V extends BaseView> implements BasePresenter<V> {
+public abstract class AbstractPresenter <V extends BaseMvpView> implements BasePresenter<V> {
 
 	@NonNull protected final Executor executor;
 	@NonNull protected final MainThread mainThread;

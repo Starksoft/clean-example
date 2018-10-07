@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 
 import com.arch.clean.core.domain.executor.ThreadExecutor;
 import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.ui.AbstractFragment;
+import com.arch.clean.core.presentation.AbstractMvpFragment;
 import com.arch.clean.core.threading.MainThreadImpl;
 
-public final class TestFragment extends AbstractFragment implements TestView {
+public final class TestFragment extends AbstractMvpFragment implements TestView {
 
 	private final TestPresenter presenter = getPresenter();
 
