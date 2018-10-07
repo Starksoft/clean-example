@@ -27,7 +27,7 @@ android {
 ext.artifact = [
 		'groupId': 'com.arch.clean',
 		'id'     : 'clean-core',
-		'version': '1.0.2',
+		'version': '1.0.3',
 		'siteUrl': 'https://github.com/Starksoft/clean-example',
 		'gitUrl' : 'https://github.com/Starksoft/clean-example.git',
 		'repo'   : 'CleanCore'
