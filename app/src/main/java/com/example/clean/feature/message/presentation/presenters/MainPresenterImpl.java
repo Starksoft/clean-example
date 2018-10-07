@@ -8,6 +8,7 @@ import android.util.Log;
 import com.arch.clean.core.domain.executor.Executor;
 import com.arch.clean.core.presentation.presenters.AbstractPresenter;
 import com.arch.clean.core.threading.MainThread;
+import com.example.clean.R;
 import com.example.clean.Utils;
 import com.example.clean.feature.message.data.repositories.MessageRepository;
 import com.example.clean.feature.message.data.repositories.MessageRepositoryImpl;
@@ -28,6 +29,10 @@ public class MainPresenterImpl extends AbstractPresenter<MainPresenterView> impl
 	@Override
 	protected void onAttachView(@NonNull MainPresenterView view) {
 		Log.d(TAG, "onAttachView() called with: view = [" + view + "]");
+
+		String string = context.getString(R.string.app_name);
+
+		Log.d(TAG, "onAttachView: string=" + string);
 	}
 
 	@Override
