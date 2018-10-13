@@ -25,12 +25,12 @@ android {
 }
 
 ext.artifact = [
-		'groupId': 'com.arch.clean',
+		'groupId': 'ru.starksoft.arch.clean',
 		'id'     : 'clean-core',
 		'version': '1.0.5',
 		'siteUrl': 'https://github.com/Starksoft/clean-example',
 		'gitUrl' : 'https://github.com/Starksoft/clean-example.git',
-		'repo'   : 'CleanCore'
+		'repo'   : 'android-maven'
 ]
 
 version = artifact.version

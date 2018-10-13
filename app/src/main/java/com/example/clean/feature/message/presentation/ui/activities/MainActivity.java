@@ -10,10 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.arch.clean.core.domain.executor.ThreadExecutor;
-import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.AbstractMvpActivity;
-import com.arch.clean.core.threading.MainThreadImpl;
 import com.example.clean.R;
 import com.example.clean.feature.message.presentation.presenters.MainPresenter;
 import com.example.clean.feature.message.presentation.presenters.MainPresenterImpl;
@@ -23,6 +19,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import ru.starksoft.arch.clean.domain.executor.ThreadExecutor;
+import ru.starksoft.arch.clean.presentation.AbstractMvpActivity;
+import ru.starksoft.arch.clean.presentation.presenters.BasePresenter;
 
 public final class MainActivity extends AbstractMvpActivity implements MainPresenterView {
 
@@ -103,6 +102,6 @@ public final class MainActivity extends AbstractMvpActivity implements MainPrese
 	@NonNull
 	@Override
 	public BasePresenter createPresenter() {
-		return new MainPresenterImpl(this, ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
+		return new MainPresenterImpl(this, ThreadExecutor.getInstance());
 	}
 }

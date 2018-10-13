@@ -1,4 +1,4 @@
-package com.arch.clean.core.presentation;
+package ru.starksoft.arch.clean.presentation;
 
 import android.support.annotation.Nullable;
 

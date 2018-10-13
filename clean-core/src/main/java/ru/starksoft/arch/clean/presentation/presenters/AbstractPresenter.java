@@ -1,24 +1,21 @@
-package com.arch.clean.core.presentation.presenters;
+package ru.starksoft.arch.clean.presentation.presenters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.arch.clean.core.domain.executor.Executor;
-import com.arch.clean.core.presentation.BaseMvpView;
-import com.arch.clean.core.threading.MainThread;
+import ru.starksoft.arch.clean.domain.executor.Executor;
+import ru.starksoft.arch.clean.presentation.BaseMvpView;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractPresenter <V extends BaseMvpView> implements BasePresenter<V> {
 
 	@NonNull protected final Executor executor;
-	@NonNull protected final MainThread mainThread;
 	@NonNull protected final Context context;
 	private V view;
 
-	protected AbstractPresenter(@NonNull Context context, @NonNull Executor executor, @NonNull MainThread mainThread) {
+	protected AbstractPresenter(@NonNull Context context, @NonNull Executor executor) {
 		this.context = context;
 		this.executor = executor;
-		this.mainThread = mainThread;
 	}
 
 	protected V getView() {

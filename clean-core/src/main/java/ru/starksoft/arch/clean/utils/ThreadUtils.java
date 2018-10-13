@@ -1,10 +1,10 @@
-package com.example.clean;
+package ru.starksoft.arch.clean.utils;
 
 import android.os.Looper;
 
-public final class Utils {
+public final class ThreadUtils {
 
-	private Utils() {
+	private ThreadUtils() {
 		throw new UnsupportedOperationException();
 	}
 

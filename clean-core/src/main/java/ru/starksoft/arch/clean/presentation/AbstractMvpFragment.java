@@ -1,4 +1,4 @@
-package com.arch.clean.core.presentation;
+package ru.starksoft.arch.clean.presentation;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.arch.clean.core.PresenterStore;
-import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.presenters.PresenterCreator;
+import ru.starksoft.arch.clean.PresenterStore;
+import ru.starksoft.arch.clean.presentation.presenters.BasePresenter;
+import ru.starksoft.arch.clean.presentation.presenters.PresenterCreator;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractMvpFragment extends Fragment implements PresenterCreator, BaseMvpView {

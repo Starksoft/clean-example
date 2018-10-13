@@ -1,8 +1,8 @@
-package com.arch.clean.core.presentation.presenters;
+package ru.starksoft.arch.clean.presentation.presenters;
 
 import android.support.annotation.NonNull;
 
-import com.arch.clean.core.presentation.BaseMvpView;
+import ru.starksoft.arch.clean.presentation.BaseMvpView;
 
 public interface BasePresenter <V extends BaseMvpView> {
 

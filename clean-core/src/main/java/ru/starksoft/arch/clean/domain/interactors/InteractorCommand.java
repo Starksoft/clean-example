@@ -1,4 +1,4 @@
-package com.arch.clean.core.domain.interactors;
+package ru.starksoft.arch.clean.domain.interactors;
 
 import android.support.annotation.AnyThread;
 
@@ -6,7 +6,4 @@ public interface InteractorCommand {
 
 	@AnyThread
 	void executeCommand();
-
-	//	@UiThread
-	//	void onCommandExecuted();
 }

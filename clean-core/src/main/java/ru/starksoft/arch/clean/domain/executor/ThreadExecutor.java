@@ -1,13 +1,15 @@
-package com.arch.clean.core.domain.executor;
+package ru.starksoft.arch.clean.domain.executor;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
-
-import com.arch.clean.core.domain.interactors.AbstractInteractor;
-import com.arch.clean.core.domain.interactors.InteractorCommand;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import ru.starksoft.arch.clean.domain.interactors.AbstractInteractor;
+import ru.starksoft.arch.clean.domain.interactors.InteractorCommand;
 
 public class ThreadExecutor implements Executor {
 
@@ -16,9 +18,11 @@ public class ThreadExecutor implements Executor {
 	private static final int KEEP_ALIVE_TIME = 120;
 	private static final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
 	private static volatile ThreadExecutor threadExecutor;
+	private final Handler handler;
 	private ThreadPoolExecutor threadPoolExecutor;
 
 	private ThreadExecutor() {
+		handler = new Handler(Looper.getMainLooper());
 		threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TIME_UNIT, new LinkedBlockingQueue<>());
 	}
 
@@ -38,5 +42,10 @@ public class ThreadExecutor implements Executor {
 
 			interactor.onFinished();
 		});
+	}
+
+	@Override
+	public void executeOnMainThread(@NonNull Runnable runnable) {
+		handler.post(runnable);
 	}
 }

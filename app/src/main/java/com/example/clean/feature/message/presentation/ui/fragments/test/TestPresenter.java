@@ -3,14 +3,13 @@ package com.example.clean.feature.message.presentation.ui.fragments.test;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.arch.clean.core.domain.executor.Executor;
-import com.arch.clean.core.presentation.presenters.AbstractPresenter;
-import com.arch.clean.core.threading.MainThread;
+import ru.starksoft.arch.clean.domain.executor.Executor;
+import ru.starksoft.arch.clean.presentation.presenters.AbstractPresenter;
 
 public class TestPresenter extends AbstractPresenter<TestView> {
 
-	TestPresenter(@NonNull Context context, @NonNull Executor executor, @NonNull MainThread mainThread) {
-		super(context, executor, mainThread);
+	TestPresenter(@NonNull Context context, @NonNull Executor executor) {
+		super(context, executor);
 	}
 
 	@Override

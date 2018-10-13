@@ -1,11 +1,11 @@
-package com.arch.clean.core;
+package ru.starksoft.arch.clean;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.presenters.PresenterCreator;
-import com.arch.clean.core.presentation.BaseMvpView;
+import ru.starksoft.arch.clean.presentation.presenters.BasePresenter;
+import ru.starksoft.arch.clean.presentation.presenters.PresenterCreator;
+import ru.starksoft.arch.clean.presentation.BaseMvpView;
 
 import java.util.HashMap;
 import java.util.Map;

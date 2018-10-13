@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.arch.clean.core.domain.executor.ThreadExecutor;
-import com.arch.clean.core.presentation.presenters.BasePresenter;
-import com.arch.clean.core.presentation.AbstractMvpFragment;
-import com.arch.clean.core.threading.MainThreadImpl;
+import ru.starksoft.arch.clean.domain.executor.ThreadExecutor;
+import ru.starksoft.arch.clean.presentation.AbstractMvpFragment;
+import ru.starksoft.arch.clean.presentation.presenters.BasePresenter;
 
 public final class TestFragment extends AbstractMvpFragment implements TestView {
 
@@ -23,18 +22,7 @@ public final class TestFragment extends AbstractMvpFragment implements TestView 
 	@NonNull
 	@Override
 	public BasePresenter createPresenter() {
-		return new TestPresenter(getContext(), ThreadExecutor.getInstance(), MainThreadImpl.getInstance());
+		return new TestPresenter(getContext(), ThreadExecutor.getInstance());
 	}
 
-	@Override
-	public void showProgress() {
-	}
-
-	@Override
-	public void hideProgress() {
-	}
-
-	@Override
-	public void manageProgress(boolean show) {
-	}
 }
